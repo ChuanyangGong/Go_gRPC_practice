@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option go_package='./;proto';
+
+service Loginer {
+    rpc Login(LoginReqData) returns (LoginResData);
+}
+
+message LoginReqData {
+    string username = 1;
+    string password = 2;
+}
+
+message LoginResData {
+    bool Success = 1;
+    string msg = 2;
+    string token = 3;
+}
