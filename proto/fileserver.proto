@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option go_package="./;proto";
+
+service FileServer {
+    rpc ListDirectory (ListDirReq) returns (ListDirRes);
+    rpc UploadFile (stream UploadFileReq) returns (UploadFileRes);
+    rpc DownloadFile (DownloadFileReq) returns (stream DownloadFileRes);
+}
+
+message ListDirReq {
+    string path = 1;
+}
+
+message ListDirRes {
+    message FileOrDirItem {
+        string name = 1;
+        bool isFile = 2;
+    }
+    repeated FileOrDirItem fileOrDirs = 1;
+    bool success = 2;
+}
+
+message UploadFileReq {
+    string filename = 1;
+    bytes file = 2;
+}
+
+message UploadFileRes {
+    string msg = 1;
+}
+
+message DownloadFileReq {
+    string filePath = 1;
+}
+
+message DownloadFileRes {
+    string filename = 1;
+    bytes file = 2;
+}

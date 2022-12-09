@@ -9,3 +9,15 @@
 ```proto
 protoc -I .\proto\ login.proto --go_out=plugins=grpc:.\proto\
 ```
+
+2. 运行服务器
+
+```shell
+go run .\server\server.go
+```
+
+3. 运行客户端
+
+```shell
+go run .\client\client.go
+```
